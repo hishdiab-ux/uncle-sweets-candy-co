@@ -179,6 +179,10 @@ body{
   box-shadow:var(--shadow);font-size:1.02rem;line-height:1.5;
   color:var(--text);
 }
+.review__rating{
+  font-size:.78rem;color:#b0b0b0;font-weight:600;
+  margin-bottom:6px;letter-spacing:.5px;
+}
 .stars{color:var(--gold);font-size:1.3rem;margin-bottom:8px}
 .reviews cite{display:block;margin-top:12px;color:var(--muted);font-size:.9rem;font-style:normal;font-weight:600}
 
