@@ -23,7 +23,9 @@
     <a href="#menu">Menu</a>
     <a href="#about">About Uncle Sweet</a>
     <a href="#reviews">Reviews</a>
-    <a href="#order" class="nav__order">Order Now 🛒</a>
+    <button class="nav__cart" id="cart-open">
+      🛒 Cart <span class="nav__cart-badge" id="cart-badge">0</span>
+    </button>
   </div>
 </nav>
 
@@ -60,83 +62,21 @@
 <!-- Menu -->
 <section class="menu" id="menu">
   <h2 class="section-title">The Candy Menu</h2>
-  <p class="menu__hint">Every item chunky-approved by Uncle Sweet.</p>
-  <div class="menu__grid">
+  <p class="menu__hint">Every item chunky-approved by Uncle Sweet. Pick your flavor.</p>
 
-    <article class="candy">
-      <div class="candy__img" style="filter:sepia(.3) saturate(1.8) hue-rotate(-10deg) brightness(1.1)">
-        <img src="assets/nathan.png" alt="">
-      </div>
-      <h3>The Original Chunk Bar</h3>
-      <p>A slab of caramel, nougat, and pure vibes. Basically edible Uncle Sweet.</p>
-      <div class="candy__buy"><span class="candy__price">$6.50</span><button class="add">Add 🛒</button></div>
-    </article>
-
-    <article class="candy">
-      <div class="candy__img" style="filter:hue-rotate(280deg) saturate(2) brightness(1.05)">
-        <img src="assets/nathan.png" alt="">
-      </div>
-      <h3>Sweet's Gummy Heads</h3>
-      <p>Gummy candies shaped like Uncle Sweet's head. Bite-sized. Hauntingly delicious.</p>
-      <div class="candy__buy"><span class="candy__price">$4.99</span><button class="add">Add 🛒</button></div>
-    </article>
-
-    <article class="candy">
-      <div class="candy__img" style="filter:hue-rotate(120deg) saturate(1.8) brightness(1.1)">
-        <img src="assets/nathan.png" alt="">
-      </div>
-      <h3>Chunky Swirl Lollipop</h3>
-      <p>A lollipop so thick you could club someone with it. Uncle Sweet did, once.</p>
-      <div class="candy__buy"><span class="candy__price">$3.25</span><button class="add">Add 🛒</button></div>
-    </article>
-
-    <article class="candy">
-      <div class="candy__img" style="filter:sepia(.6) saturate(2.5) hue-rotate(-25deg) brightness(1.1) contrast(1.1)">
-        <img src="assets/nathan.png" alt="">
-      </div>
-      <h3>Golden Uncle Fudge</h3>
-      <p>Dense. Sticky. Suspiciously heavy. Worth every calorie and then some.</p>
-      <div class="candy__buy"><span class="candy__price">$8.00</span><button class="add">Add 🛒</button></div>
-    </article>
-
-    <article class="candy">
-      <div class="candy__img" style="filter:hue-rotate(200deg) saturate(2) brightness(.95) contrast(1.15)">
-        <img src="assets/nathan.png" alt="">
-      </div>
-      <h3>Frosty Sweet Drops</h3>
-      <p>Hard candies with a cool blue center. Uncle Sweet calls them "mints for tough guys."</p>
-      <div class="candy__buy"><span class="candy__price">$5.50</span><button class="add">Add 🛒</button></div>
-    </article>
-
-    <article class="candy">
-      <div class="candy__img" style="filter:hue-rotate(330deg) saturate(2.5) brightness(1.1) contrast(1.2)">
-        <img src="assets/nathan.png" alt="">
-      </div>
-      <h3>Bubblegum Bust</h3>
-      <p>Pink bubblegum you can chew for three hours straight. Uncle Sweet tested this personally.</p>
-      <div class="candy__buy"><span class="candy__price">$2.75</span><button class="add">Add 🛒</button></div>
-    </article>
-
-    <article class="candy candy--featured">
-      <div class="candy__ribbon">BEST SELLER</div>
-      <div class="candy__img" style="filter:sepia(.2) saturate(1.8) hue-rotate(-5deg) brightness(1.15) contrast(1.1)">
-        <img src="assets/nathan.png" alt="">
-      </div>
-      <h3>The Chunky Deluxe Box</h3>
-      <p>Everything. All of it. A box so full Uncle Sweet had to sit on it to close it. Feeds a family or one very committed person.</p>
-      <div class="candy__buy"><span class="candy__price">$42.00</span><button class="add">Add 🛒</button></div>
-    </article>
-
-    <article class="candy">
-      <div class="candy__img" style="filter:hue-rotate(60deg) saturate(2) brightness(1.05)">
-        <img src="assets/nathan.png" alt="">
-      </div>
-      <h3>Lemon Chunk Clusters</h3>
-      <p>Tart, sweet, and shaped suspiciously like Uncle Sweet in a bad mood.</p>
-      <div class="candy__buy"><span class="candy__price">$5.99</span><button class="add">Add 🛒</button></div>
-    </article>
-
+  <!-- Flavor filter -->
+  <div class="flavor-filter" id="flavor-filter">
+    <button class="flavor-chip active" data-flavor="all">All</button>
+    <button class="flavor-chip" data-flavor="chocolate">🍫 Chocolate</button>
+    <button class="flavor-chip" data-flavor="caramel">🧈 Caramel</button>
+    <button class="flavor-chip" data-flavor="gummy">🐻 Gummy</button>
+    <button class="flavor-chip" data-flavor="fruit">🍓 Fruit</button>
+    <button class="flavor-chip" data-flavor="sour">😝 Sour</button>
+    <button class="flavor-chip" data-flavor="mint">🌿 Mint</button>
+    <button class="flavor-chip" data-flavor="bubblegum">👄 Bubblegum</button>
   </div>
+
+  <div class="menu__grid" id="menu-grid"><!-- filled by JS --></div>
 </section>
 
 <!-- Reviews -->
@@ -185,11 +125,7 @@
     <div class="order__text">
       <h2>Get Your Sugar Fix</h2>
       <p>Uncle Sweet is standing by, apron on, ready to pack your order with his bare chunky hands.</p>
-      <div class="order__cart">
-        <span class="order__count" id="cart-count">🛒 0 items</span>
-        <span class="order__total" id="cart-total">Total: $0.00</span>
-      </div>
-      <button class="order__btn" id="checkout">Sweet! Checkout 🍭</button>
+      <button class="order__btn" id="open-cart-cta">🛒 View My Cart</button>
       <p class="order__fineprint">* No actual checkout. Uncle Sweet runs on vibes and honor system.</p>
     </div>
   </div>
@@ -201,6 +137,35 @@
   <p class="footer__small">Chunky treats since forever • Made with sugar &amp; zero restraint</p>
   <p class="footer__small">© <span id="year"></span> The Uncle Sweet Estate. All sweet reserved.</p>
 </footer>
+
+<!-- ====== CART DRAWER ====== -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart">
+  <div class="cart-drawer__head">
+    <h2>🛒 Your Sweet Cart</h2>
+    <button class="cart-drawer__close" id="cart-close" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-drawer__body" id="cart-items">
+    <div class="cart-empty" id="cart-empty">
+      <div class="cart-empty__icon">🍬</div>
+      <p>Your cart is empty!</p>
+      <p class="cart-empty__sub">Uncle Sweet is mildly offended. Add some candy.</p>
+    </div>
+  </div>
+  <div class="cart-drawer__foot" id="cart-foot" style="display:none">
+    <div class="cart-summary">
+      <div class="cart-summary__row"><span>Items</span><span id="cart-summary-count">0</span></div>
+      <div class="cart-summary__row cart-summary__row--big"><span>Subtotal</span><span id="cart-summary-total">$0.00</span></div>
+      <div class="cart-summary__row" id="cart-delivery-row"><span>Delivery</span><span id="cart-delivery">$5.00</span></div>
+      <div class="cart-summary__row cart-summary__row--total"><span>Total</span><span id="cart-grand-total">$0.00</span></div>
+    </div>
+    <button class="cart-checkout" id="checkout">Sweet! Checkout 🍭</button>
+    <button class="cart-clear" id="cart-clear">Clear Cart</button>
+  </div>
+</aside>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
 
 <script src="script.js"></script>
 </body>
