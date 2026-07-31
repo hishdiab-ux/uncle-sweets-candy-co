@@ -52,7 +52,7 @@ function renderMenu(filter='all'){
     card.dataset.flavor = c.flavor;
     card.innerHTML = `
       ${c.featured ? '<div class="candy__ribbon">BEST SELLER</div>' : ''}
-      ${c.elite ? '<div class="candy__elite-badge">ELITE</div>' : ''}`
+      ${c.elite ? '<div class="candy__elite-badge">ELITE</div>' : ''}
       <div class="candy__img">
         <span class="candy__flavor-tag ${c.elite ? 'candy__flavor-tag--elite' : ''}">${c.elite ? 'ELITE TIER' : c.flavorLabel}</span>
         <img src="${c.img}" alt="${c.name}">
