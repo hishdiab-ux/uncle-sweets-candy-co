@@ -2,6 +2,7 @@
 const IMAGES = ['assets/sweet-1.png','assets/sweet-2.png','assets/sweet-3.png','assets/sweet-4.png','assets/sweet-5.png'];
 
 const CANDIES = [
+  { id:'choco-flappy', name:'CHOCOLATE FLAPPY', flavor:'chocolate', flavorLabel:'🍫 Chocolate', desc:'The legendary CHOCOLATE FLAPPY. Forged in pure cocoa by Uncle Sweet himself. Only the worthy may purchase. Elite tier. No substitutes.', price:99.00, tags:['ELITE','Pure cocoa','Legendary','Limited'], featured:true, elite:true, img:'assets/chocolate-flappy.png' },
   { id:'choco-volcano', name:'Chocolate Volcano Truffle', flavor:'chocolate', flavorLabel:'🍫 Chocolate', desc:'Rich dark chocolate with a molten caramel core. Uncle Sweet\'s personal favorite.', price:7.50, tags:['Dark chocolate','Molten core','Chunky'], featured:true },
   { id:'caramel-salt', name:'Caramel Sea-Salt Chunk', flavor:'caramel', flavorLabel:'🧈 Caramel', desc:'Buttery caramel folded with flaky sea salt. Sweet, salty, and unreasonably thick.', price:6.50, tags:['Sea salt','Buttery','Thick'] },
   { id:'gummy-heads', name:"Sweet's Gummy Heads", flavor:'gummy', flavorLabel:'🐻 Gummy', desc:'Gummy candies shaped like Uncle Sweet\'s head. Bite-sized. Hauntingly delicious.', price:4.99, tags:['Gummy','Haunting','Bite-sized'] },
@@ -19,6 +20,7 @@ const CANDIES = [
 // ===== Assign random images to each candy =====
 const shuffled = [...IMAGES].sort(()=>Math.random()-0.5);
 CANDIES.forEach((c,i)=>{
+  if(c.img) return; // keep fixed images (e.g. elite products)
   c.img = shuffled[i % shuffled.length];
 });
 
@@ -46,12 +48,13 @@ function renderMenu(filter='all'){
   CANDIES.forEach(c=>{
     if(filter!=='all' && c.flavor!==filter) return;
     const card = document.createElement('article');
-    card.className = 'candy' + (c.featured ? ' candy--featured' : '');
+    card.className = 'candy' + (c.featured ? ' candy--featured' : '') + (c.elite ? ' candy--elite' : '');
     card.dataset.flavor = c.flavor;
     card.innerHTML = `
       ${c.featured ? '<div class="candy__ribbon">BEST SELLER</div>' : ''}
+      ${c.elite ? '<div class="candy__elite-badge">ELITE</div>' : ''}`
       <div class="candy__img">
-        <span class="candy__flavor-tag">${c.flavorLabel}</span>
+        <span class="candy__flavor-tag ${c.elite ? 'candy__flavor-tag--elite' : ''}">${c.elite ? 'ELITE TIER' : c.flavorLabel}</span>
         <img src="${c.img}" alt="${c.name}">
       </div>
       <h3>${c.name}</h3>

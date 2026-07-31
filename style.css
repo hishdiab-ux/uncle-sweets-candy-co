@@ -306,3 +306,77 @@ body{
   .about__wrap{flex-direction:column}
   .hero__img-wrap{width:75vw}
 }
+
+/* ===== ELITE PRODUCT ===== */
+.candy--elite{
+  border:3px solid var(--gold);
+  background:linear-gradient(160deg,#1a1520,#2a1f3a);
+  box-shadow:0 0 0 1px var(--gold),0 10px 40px rgba(255,182,39,.3),0 0 60px rgba(255,182,39,.15);
+  animation:elite-pulse 3s ease-in-out infinite;
+  position:relative;
+  overflow:hidden;
+}
+.candy--elite::before{
+  content:'';
+  position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:linear-gradient(45deg,transparent 40%,rgba(255,182,39,.15) 50%,transparent 60%);
+  animation:elite-shimmer 4s linear infinite;
+  pointer-events:none;z-index:1;
+}
+@keyframes elite-shimmer{
+  0%{transform:translateX(-100%) translateY(-100%)}
+  100%{transform:translateX(100%) translateY(100%)}
+}
+@keyframes elite-pulse{
+  0%,100%{box-shadow:0 0 0 1px var(--gold),0 10px 40px rgba(255,182,39,.3),0 0 60px rgba(255,182,39,.15)}
+  50%{box-shadow:0 0 0 2px var(--gold),0 10px 50px rgba(255,182,39,.5),0 0 80px rgba(255,182,39,.25)}
+}
+.candy--elite h3{
+  color:var(--gold);
+  text-shadow:0 0 20px rgba(255,182,39,.4);
+  letter-spacing:1px;
+}
+.candy--elite .candy__desc{color:#c4b8d4}
+.candy--elite .candy__pill{
+  background:rgba(255,182,39,.15);
+  border-color:rgba(255,182,39,.4);
+  color:var(--gold);
+}
+.candy--elite .candy__price{color:var(--gold);font-size:1.6rem}
+.candy--elite .add{
+  background:linear-gradient(135deg,var(--gold),#ff9500);
+  color:#1a1520;font-weight:800;
+  box-shadow:0 4px 16px rgba(255,182,39,.5);
+}
+.candy--elite .add:hover{
+  background:linear-gradient(135deg,#ffd700,#ffb627);
+  transform:scale(1.1);
+}
+.candy--elite .candy__img{position:relative;overflow:hidden}
+.candy--elite .candy__img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(26,21,32,.6));
+  pointer-events:none;
+}
+
+/* Elite badge on the image */
+.candy__elite-badge{
+  position:absolute;top:12px;right:12px;z-index:3;
+  background:linear-gradient(135deg,var(--gold),#ff9500);
+  color:#1a1520;padding:5px 14px;border-radius:8px;
+  font-weight:800;font-size:.75rem;letter-spacing:2px;
+  box-shadow:0 4px 16px rgba(255,182,39,.6);
+  animation:elite-badge-glow 2s ease-in-out infinite;
+}
+@keyframes elite-badge-glow{
+  0%,100%{box-shadow:0 4px 16px rgba(255,182,39,.6)}
+  50%{box-shadow:0 4px 24px rgba(255,182,39,.9)}
+}
+
+/* Elite flavor tag */
+.candy__flavor-tag--elite{
+  background:linear-gradient(135deg,var(--gold),#ff9500)!important;
+  color:#1a1520!important;
+  font-weight:800;letter-spacing:1.5px;
+  box-shadow:0 2px 12px rgba(255,182,39,.5);
+}
